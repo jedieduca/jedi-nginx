@@ -6,22 +6,22 @@ services:
     container_name: nginx_gateway
     restart: unless-stopped
     ports:
-      - "85:85"   
-      - "8443:8443" 
+      - "80:80"   
+      - "443:443" 
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ../jedi-adianti:/var/www/html 
       - ./certs:/etc/nginx/certs:ro 
       - graficos_data:/var/www/html/mad/app/output/charts:ro
     networks:
-      - my-shared-network
+      - jedieduca-network
 
 # 🔹 COMPLEMENTO CORRIGIDO: Sintaxe moderna e sem erros de YAML
 volumes:
   graficos_data:
-    name: python_service_graficos_data
+    name: jedi-python_graficos_data
     external: true
 
 networks:
-  my-shared-network:
+  jedieduca-network:
     external: true
